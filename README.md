@@ -1,2 +1,4 @@
-# nutsdb-benchmark
-Benchmarks of NutsDB
+# kvstore-bench
+Go kv store benchmark
+
+## Tested kvstore
