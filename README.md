@@ -64,5 +64,5 @@ NutsDB、BuntDB、LevelDB are fast. And NutsDB is fastest. It is 5-10x faster th
 
 ### Get(read) Performance: 
 
-All are fast. And NutsDB and BuntDB with default options are 2x faster that others.
+All are fast. And NutsDB and BuntDB with default options are 2x faster than others.
 And NutsDB reads with MemoryMap option is slower 40x than its default option way. 
