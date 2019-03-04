@@ -3,11 +3,11 @@ Go kv store benchmark
 
 ## Tested kvstore
 
-* [BadgerDB](https://github.com/dgraph-io/badger) (with default options)
-* [BoltDB](https://github.com/boltdb/bolt) (with default options)
-* [BuntDB](https://github.com/tidwall/buntdb) (with default options)
-* [LevelDB](https://github.com/syndtr/goleveldb) (with default options)
-* [NutsDB](https://github.com/xujiajun/nutsdb) (with default options or custom options)
+* [BadgerDB](https://github.com/dgraph-io/badger) (master branch with default options)
+* [BoltDB](https://github.com/boltdb/bolt) (master branch  with default options)
+* [BuntDB](https://github.com/tidwall/buntdb) (master branch with default options)
+* [LevelDB](https://github.com/syndtr/goleveldb) (master branch with default options)
+* [NutsDB](https://github.com/xujiajun/nutsdb) (master branch with default options or custom options)
 
 ## Benchmark System:
 
@@ -16,6 +16,11 @@ Go kv store benchmark
 * Architecture: x86_64
 * 16 GB 2133 MHz LPDDR3
 * CPU: 3.1 GHz Intel Core i7
+
+## Tested time
+
+29 Jan,2019
+
 
 ## To run benchmark:
 
