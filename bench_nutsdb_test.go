@@ -45,11 +45,11 @@ func InitNutsDBByDefaultOpt() {
 	}
 }
 
-func InitNutsDBByByMemoryMapOpt() {
+func InitNutsDBByByHintKeyOpt() {
 	opt := nutsdb.DefaultOptions
 	opt.Dir = "testdata/nutsDB"
 	opt.SegmentSize = 64 * 1024 * 1024
-	opt.EntryIdxMode = nutsdb.HintAndMemoryMapIdxMode
+	opt.EntryIdxMode = nutsdb.HintKeyAndRAMIdxMode
 	nutsDB, err = nutsdb.Open(opt)
 	if err != nil {
 		panic(err)
@@ -165,8 +165,8 @@ func BenchmarkNutsDBGet(b *testing.B) {
 	}
 }
 
-func BenchmarkNutsDBGetByMemoryMap(b *testing.B) {
-	InitNutsDBByByMemoryMapOpt()
+func BenchmarkNutsDBGetByHintKey(b *testing.B) {
+	InitNutsDBByByHintKeyOpt()
 	InitNutsDBData()
 
 	b.ReportAllocs()
@@ -186,41 +186,41 @@ func BenchmarkNutsDBGetByMemoryMap(b *testing.B) {
 	}
 }
 
-func BenchmarkNutsDBPrefixScan(b *testing.B) {
-	InitNutsDBByDefaultOpt()
-	InitNutsDBData()
-
-	b.ReportAllocs()
-	b.ResetTimer()
-
-	for n := 0; n < b.N; n++ {
-		prefix := []byte("key_")
-		if err := nutsDB.View(
-			func(tx *nutsdb.Tx) error {
-				_, err := tx.PrefixScan("bucket1", prefix, 1)
-				return err
-			}); err != nil {
-			panic(err)
-		}
-	}
-}
-
-func BenchmarkNutsDBRangeScan(b *testing.B) {
-	InitNutsDBByDefaultOpt()
-	InitNutsDBData()
-
-	b.ReportAllocs()
-	b.ResetTimer()
-
-	for n := 0; n < b.N; n++ {
-		start := []byte("key_0000078")
-		end := []byte("key_0000079")
-		if err := nutsDB.View(
-			func(tx *nutsdb.Tx) error {
-				_, err := tx.RangeScan("bucket1", start, end)
-				return err
-			}); err != nil {
-			panic(err)
-		}
-	}
-}
+//func BenchmarkNutsDBPrefixScan(b *testing.B) {
+//	InitNutsDBByDefaultOpt()
+//	InitNutsDBData()
+//
+//	b.ReportAllocs()
+//	b.ResetTimer()
+//
+//	for n := 0; n < b.N; n++ {
+//		prefix := []byte("key_")
+//		if err := nutsDB.View(
+//			func(tx *nutsdb.Tx) error {
+//				_, err := tx.PrefixScan("bucket1", prefix, 1)
+//				return err
+//			}); err != nil {
+//			panic(err)
+//		}
+//	}
+//}
+//
+//func BenchmarkNutsDBRangeScan(b *testing.B) {
+//	InitNutsDBByDefaultOpt()
+//	InitNutsDBData()
+//
+//	b.ReportAllocs()
+//	b.ResetTimer()
+//
+//	for n := 0; n < b.N; n++ {
+//		start := []byte("key_0000078")
+//		end := []byte("key_0000079")
+//		if err := nutsDB.View(
+//			func(tx *nutsdb.Tx) error {
+//				_, err := tx.RangeScan("bucket1", start, end)
+//				return err
+//			}); err != nil {
+//			panic(err)
+//		}
+//	}
+//}

@@ -1,7 +1,6 @@
 package kvstore_bench
 
 import (
-	"bytes"
 	"fmt"
 	"os"
 	"testing"
@@ -151,43 +150,43 @@ func InitBoltDBData() {
 	}
 }
 
-func BenchmarkBoltDBRangeScans(b *testing.B) {
-	InitBoltDBData()
-
-	b.ReportAllocs()
-	b.ResetTimer()
-
-	for n := 0; n < b.N; n++ {
-		if err := boltDB.View(
-			func(tx *bolt.Tx) error {
-				c := tx.Bucket([]byte("bucket1")).Cursor()
-				start := []byte("key_0000078")
-				end := []byte("key_0000079")
-				for k, _ := c.Seek(start); k != nil && bytes.Compare(k, end) <= 0; k, _ = c.Next() {
-				}
-				return err
-			}); err != nil {
-			panic(err)
-		}
-	}
-}
-
-func BenchmarkBoltDBPrefixScans(b *testing.B) {
-	InitBoltDBData()
-
-	b.ReportAllocs()
-	b.ResetTimer()
-
-	for n := 0; n < b.N; n++ {
-		prefix := []byte("key_")
-		if err := boltDB.View(func(tx *bolt.Tx) error {
-			c := tx.Bucket([]byte("bucket1")).Cursor()
-			for k, _ := c.Seek(prefix); k != nil && bytes.HasPrefix(k, prefix); k, _ = c.Next() {
-				break
-			}
-			return err
-		}); err != nil {
-			panic(err)
-		}
-	}
-}
+//func BenchmarkBoltDBRangeScans(b *testing.B) {
+//	InitBoltDBData()
+//
+//	b.ReportAllocs()
+//	b.ResetTimer()
+//
+//	for n := 0; n < b.N; n++ {
+//		if err := boltDB.View(
+//			func(tx *bolt.Tx) error {
+//				c := tx.Bucket([]byte("bucket1")).Cursor()
+//				start := []byte("key_0000078")
+//				end := []byte("key_0000079")
+//				for k, _ := c.Seek(start); k != nil && bytes.Compare(k, end) <= 0; k, _ = c.Next() {
+//				}
+//				return err
+//			}); err != nil {
+//			panic(err)
+//		}
+//	}
+//}
+//
+//func BenchmarkBoltDBPrefixScans(b *testing.B) {
+//	InitBoltDBData()
+//
+//	b.ReportAllocs()
+//	b.ResetTimer()
+//
+//	for n := 0; n < b.N; n++ {
+//		prefix := []byte("key_")
+//		if err := boltDB.View(func(tx *bolt.Tx) error {
+//			c := tx.Bucket([]byte("bucket1")).Cursor()
+//			for k, _ := c.Seek(prefix); k != nil && bytes.HasPrefix(k, prefix); k, _ = c.Next() {
+//				break
+//			}
+//			return err
+//		}); err != nil {
+//			panic(err)
+//		}
+//	}
+//}
