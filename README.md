@@ -15,10 +15,6 @@ Go kv store benchmark
 * 16 GB 2133 MHz LPDDR3
 * CPU: 3.1 GHz Intel Core i7
 
-## Tested time
-
-29 Jan,2019
-
 
 ## To run benchmark:
 
