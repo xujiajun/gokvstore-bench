@@ -4,7 +4,7 @@ Go kv store benchmark
 ## Tested kvstore (which is embedded, persistence and support transactions)
 
 * [BadgerDB](https://github.com/dgraph-io/badger) (master branch with default options)
-* [BoltDB](https://github.com/boltdb/bolt) (master branch with default options)
+* [BoltDB](https://github.com/boltdb/bolt) (master branch  with default options)
 * [NutsDB](https://github.com/xujiajun/nutsdb) (master branch with default options or custom options)
 
 ## Benchmark System:
@@ -14,6 +14,11 @@ Go kv store benchmark
 * Architecture: x86_64
 * 16 GB 2133 MHz LPDDR3
 * CPU: 3.1 GHz Intel Core i7
+
+## Tested time
+
+29 Jan,2019
+
 
 ## To run benchmark:
 
